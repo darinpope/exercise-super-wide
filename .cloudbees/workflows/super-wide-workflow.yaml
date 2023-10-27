@@ -8,10 +8,42 @@ on:
       - '**'
 
 jobs:
-  build:
+  job00001:
     steps:
       - name: Say hello
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo "hello world"
+          echo "sleeping for 180"
+          sleep 180
+          echo "done"
+  job00002:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "sleeping for 180"
+          sleep 180
+          echo "done"
+  job00003:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "sleeping for 180"
+          sleep 180
+          echo "done"
+  job999999:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "$(date)"
+          echo "done"
+    needs:
+      - job00001
+      - job00002
+      - job00003
