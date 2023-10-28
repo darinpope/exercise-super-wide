@@ -1,6 +1,7 @@
 #!/bin/bash
 PARALLEL_COUNT=$1
 WORKFLOW_FILENAME=$(echo ".cloudbees/workflows/$2.yaml")
+SLEEP_VALUE=$3
 START=1
 
 echo $PARALLEL_COUNT
@@ -24,8 +25,8 @@ do
   echo "        uses: docker://golang:1.20.3-alpine3.17" >> $WORKFLOW_FILENAME
   echo "        shell: sh" >> $WORKFLOW_FILENAME
   echo "        run: |" >> $WORKFLOW_FILENAME
-  echo "          echo \"sleeping for 180\"" >> $WORKFLOW_FILENAME
-  echo "          sleep 180" >> $WORKFLOW_FILENAME
+  echo "          echo \"sleeping for $SLEEP_VALUE\"" >> $WORKFLOW_FILENAME
+  echo "          sleep $SLEEP_VALUE" >> $WORKFLOW_FILENAME
   echo "          echo \"done\"" >> $WORKFLOW_FILENAME
 done
 echo "  job999999:" >> $WORKFLOW_FILENAME
